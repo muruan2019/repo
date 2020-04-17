@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>{"time":"%d{yyyy-MM-dd HH:mm:ss SSS}", "level":"%p", "classname":"%class", "method":"%method", "line":"%line", "msg":"%msg"}%n</pattern>
+        </encoder>
+    </appender>
+    <appender name= "${serviceName}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/opt/logs/${appName}/${serviceName}.log</file>
+        <!-- 按日期和大小区分的滚动日志 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/opt/logs/eap/${appName}/${serviceName}%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--日志文件保留天数 -->
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>
+                {"time":"%d{yyyy-MM-dd HH:mm:ss SSS}", "level":"%p", "classname":"%class", "method":"%method", "line":"%line", "msg":"%msg"}%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="ch.qos.logback.core" level="ERROR" />
+    <logger name="java.sql.PreparedStatement" level="ERROR" />
+    <logger name="java.sql.Connection" level="ERROR" />
+    <logger name="java.sql.ResultSet" level="ERROR" />
+    <logger name="org.springframework" level="ERROR" />
+    <logger name="com.ning.http.client" level="ERROR" />
+    <logger name="org.apache.kafka" level="ERROR" />
+    <logger name="org.mybatis.spring" level="ERROR" />
+    <logger name="com.hundunyun.common.hystrix" level="WARN" />
+    <!--用户行为日志单独打印-->
+    <logger name="${commomPackage}" level="INFO" additivity="false">
+        <appender-ref ref= "${serviceName}" />
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

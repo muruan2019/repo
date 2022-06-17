@@ -12,7 +12,7 @@
         <guava.version>23.0</guava.version>
         <mybatis.spring.boot>2.1.1</mybatis.spring.boot>
         <mybatis.spring>2.0.3</mybatis.spring>
-        <fastjosn.version>1.2.62</fastjosn.version>
+        <fastjosn.version>1.2.83</fastjosn.version>
         <druid.spring.version>1.1.20</druid.spring.version>
         <lombok.version>1.16.14</lombok.version>
         <pagehelper.version>3.7.6</pagehelper.version>

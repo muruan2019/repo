@@ -18,7 +18,7 @@
         <pagehelper.version>3.7.6</pagehelper.version>
         <mysql.version>5.1.46</mysql.version>
         <tk.mybatis.version>4.1.5</tk.mybatis.version>
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.9</logback.version>
         <mybatis.generator.core>1.3.7</mybatis.generator.core>
         <java.version>1.8</java.version>
         <encoding>UTF-8</encoding>
